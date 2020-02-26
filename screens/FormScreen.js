@@ -6,8 +6,13 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 import styles from '../allStyles';
 
+let xhtmlTestOutput = "-xhtml-";
+
 
 export default function FormScreen() {
+
+  requestxhtml();
+
   return (
     <ScrollView style={styles.form_container} contentContainerStyle={styles.form_contentContainer}>
       <OptionButton
@@ -31,6 +36,7 @@ export default function FormScreen() {
 
       <View style={styles.form_getStartedContainer}>   
         <Text>This will be where all the forms are and junk heck yeah yeet</Text>
+        <Text>{xhtmlTestOutput}</Text>
       </View>
 
     </ScrollView>
@@ -40,14 +46,18 @@ export default function FormScreen() {
 }
 
 
-// function requestxhtml() {
-//   var xmlRequest = new XMLHttpRequest();
-//   xmlRequest.addEventListener("load", onXhtmlLoad);
-//   xmlRequest.open("GET","http://wheniskeynote.com/");
-//   xmlRequest.send();
-//   console.log("Success TOM");
-//   //return xmlReresponseText;
-// }
+function justPrintResponseText(){
+  console.log(this.responseText);
+}
+
+function requestxhtml() {
+  var xmlRequest = new XMLHttpRequest();
+  xmlRequest.addEventListener("load", justPrintResponseText);
+  xmlRequest.open("GET","http://wheniskeynote.com/");
+  xmlRequest.send();
+  console.log("Success TOM");
+  //return xmlReresponseText;
+}
 
 
 
