@@ -30,7 +30,7 @@ export default function FormScreen() {
       />
 
       <View style={styles.form_getStartedContainer}>   
-        <Text>This will be where all the forms are and junk heck yeah</Text>
+        <Text>This will be where all the forms are and junk heck yeah yeet</Text>
       </View>
 
     </ScrollView>
@@ -38,6 +38,18 @@ export default function FormScreen() {
 
   );
 }
+
+
+// function requestxhtml() {
+//   var xmlRequest = new XMLHttpRequest();
+//   xmlRequest.addEventListener("load", onXhtmlLoad);
+//   xmlRequest.open("GET","http://wheniskeynote.com/");
+//   xmlRequest.send();
+//   console.log("Success TOM");
+//   //return xmlReresponseText;
+// }
+
+
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (
@@ -53,37 +65,3 @@ function OptionButton({ icon, label, onPress, isLastOption }) {
     </RectButton>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fafafa',
-//   },
-//   contentContainer: {
-//     paddingTop: 15,
-//   },
-//   optionIconContainer: {
-//     marginRight: 12,
-//   },
-//   option: {
-//     backgroundColor: '#fdfdfd',
-//     paddingHorizontal: 15,
-//     paddingVertical: 15,
-//     borderWidth: StyleSheet.hairlineWidth,
-//     borderBottomWidth: 0,
-//     borderColor: '#ededed',
-//   },
-//   lastOption: {
-//     borderBottomWidth: StyleSheet.hairlineWidth,
-//   },
-//   optionText: {
-//     fontSize: 15,
-//     alignSelf: 'flex-start',
-//     marginTop: 1,
-//   },
-//   getStartedContainer: {
-//     alignItems: 'center',
-//     marginHorizontal: 50,
-//   },
-
-// });
