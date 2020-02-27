@@ -6,6 +6,9 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 import styles from '../allStyles';
 
+var DomParser = require('react-native-html-parser').DOMParser
+
+
 let xhtmlTestOutput = "-xhtml-";
 
 
@@ -50,10 +53,34 @@ function justPrintResponseText(){
   console.log(this.responseText);
 }
 
+/**
+ * takes string and looks for > then looks for < and substrings in between them
+ * @param {string only} _string 
+ */
+function takeOutMLtags(_string){
+  if(_string.includes(">"))
+  {
+    var returnString = _string.substring(_string.indexOf('>')+1, _string.lastIndexOf('<'));
+    console.log("TAKE OUT RESULT:" + returnString);
+    return returnString;
+  }
+  else return "INVALID_STRING - functionn:takeOutMLtags";
+}
+
+function parseResponseText(){
+  let _response = this.responseText;
+  let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
+  var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');
+  console.log(before);
+  takeOutMLtags(before);
+}
+
+
+
 function requestxhtml() {
   var xmlRequest = new XMLHttpRequest();
-  xmlRequest.addEventListener("load", justPrintResponseText);
-  xmlRequest.open("GET","http://wheniskeynote.com/");
+  xmlRequest.addEventListener("load", parseResponseText);
+  xmlRequest.open("GET","https://www.glenwoodoilandgasinc.com/appinfo");
   xmlRequest.send();
   console.log("Success TOM");
   //return xmlReresponseText;
