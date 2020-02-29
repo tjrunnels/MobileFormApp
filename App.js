@@ -33,7 +33,15 @@ export default function App(props) {
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         });
 
-        
+        //Load from Stimulus
+        const response = await fetch('https://www.glenwoodoilandgasinc.com/appinfo',{
+          method: 'GET'
+        });
+        const responseText = await response.text();
+        var parsed = parseResponseText(responseText);
+        console.log("parsed code running in app.js: " + parsed);
+
+
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);
@@ -59,6 +67,49 @@ export default function App(props) {
     );
   }
 }
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//*** Custom Functions ****
+var DomParser = require('react-native-html-parser').DOMParser;
+function parseResponseText(responseText){
+  console.log("parsingResponse....")
+  let _response = responseText;
+  let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
+
+  var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');
+  var takeOut = takeOutMLtags(before);
+  var after = "AFTER: " + takeOut;
+  console.log(before);
+  console.log(after);
+  return takeOut;
+  //end of event listner
+}
+
+/**
+ * takes string and looks for > then looks for < and substrings in between them
+ * @param {string} _string must have exactly one <tag>content</tag>
+ */
+function takeOutMLtags(_string){
+  if(_string.includes(">"))
+  {
+    var returnString = _string.substring(_string.indexOf('>')+1, _string.lastIndexOf('<'));
+    //console.log("TAKE OUT RESULT:" + returnString);
+    return returnString;
+  }
+  else return "INVALID_STRING - function:takeOutMLtags";
+}
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
