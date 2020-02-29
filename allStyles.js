@@ -108,7 +108,7 @@ styles = StyleSheet.create({
   },
 
   home_formButtonText: {
-     fontSize:50,
+     fontSize:20,
      fontWeight:"bold",
      textAlign:"center",
      fontFamily:"Times New Roman",

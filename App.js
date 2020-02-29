@@ -13,7 +13,8 @@ import useLinking from './navigation/useLinking';
 const Stack = createStackNavigator();
 
 global.itbe = "like that";
-global.itbebefore = "balnks";
+global.Gwood = new Object();
+ 
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -86,9 +87,18 @@ function parseResponseText(responseText){
   console.log("parsingResponse....")
   let _response = responseText;
   let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
+  
+  //at this point, xthmlDom is a Domparser version of the entire glenwood html.  let the parsing begin
+  global.Gwood.forms = takeOutMLtags(xhtmlDom.querySelect('#forms')).split(',');
+  global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
+  global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
 
-  var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');  
-  global.itbebefore=before;
+
+
+
+
+
+  var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
   var takeOut = takeOutMLtags(before);
   var after = "AFTER: " + takeOut;
   console.log(before);
@@ -102,6 +112,7 @@ function parseResponseText(responseText){
  * @param {string} _string must have exactly one <tag>content</tag>
  */
 function takeOutMLtags(_string){
+  _string = "" + _string;
   if(_string.includes(">"))
   {
     var returnString = _string.substring(_string.indexOf('>')+1, _string.lastIndexOf('<'));
@@ -111,6 +122,13 @@ function takeOutMLtags(_string){
   else return "INVALID_STRING - function:takeOutMLtags";
 }
 
+/**
+ * takes a csv string and returns 
+ * @param {string} _string must be a csv
+ */
+function csvCountEntries(_string){
+  return _string.split(',');
+}
 
 
 

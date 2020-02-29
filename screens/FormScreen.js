@@ -18,6 +18,8 @@ export default function FormScreen({route,navigation}) {
  // requestxhtml();
   return (
     <ScrollView style={styles.form_container} contentContainerStyle={styles.form_contentContainer}>
+
+      <Text style={{fontSize:50}}>{global.Gwood.formChosen}</Text>
       <OptionButton
         icon="md-school"
         label="Read the Expo documentation"
