@@ -31,15 +31,26 @@ export default function HomeScreen({navigation}) {
 
 
         <View style={styles.home_getStartedContainer}>   
-          <Text style={styles.home_getStartedText}>Head over to the form page</Text>
-
+         <Text>  go somewhere else  </Text>
           <TouchableOpacity 
           style={styles.home_formButton} 
           onPress={() => navigation.navigate('Form')}
           >
-              <Text style={styles.home_formButtonText}>BETER</Text>
+              <Text style={styles.home_formButtonText}>Form</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity 
+          style={styles.home_formButton} 
+          onPress={() => navigation.navigate('Loading')}
+          >
+              <Text style={styles.home_formButtonText}>Loading</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          style={styles.home_formButton} 
+          onPress={() => navigation.navigate('Links')}
+          >
+              <Text style={styles.home_formButtonText}>idk. links?</Text>
+          </TouchableOpacity>
 
         </View>
 
@@ -52,14 +63,6 @@ export default function HomeScreen({navigation}) {
 
 
       </ScrollView>
-
-      <View style={styles.home_tabBarInfoContainer}>
-        <Text style={styles.home_tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.home_codeHighlightContainer, styles.home_navigationFilename]}>
-          <MonoText style={styles.home_codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
 }

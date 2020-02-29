@@ -12,6 +12,7 @@ export default function(containerRef) {
           Links: 'links',
           Settings: 'settings',
           Form: 'form',
+          Loading: 'loading',
         },
       },
     },
