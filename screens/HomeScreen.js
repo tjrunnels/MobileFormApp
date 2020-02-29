@@ -49,7 +49,7 @@ export default function HomeScreen({navigation}) {
           style={styles.home_formButton} 
           onPress={() => navigation.navigate('Links')}
           >
-              <Text style={styles.home_formButtonText}>idk. links?</Text>
+              <Text>{global.itbebefore}</Text>
           </TouchableOpacity>
 
         </View>

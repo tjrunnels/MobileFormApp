@@ -12,6 +12,9 @@ import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
 
+global.itbe = "like that";
+global.itbebefore = "balnks";
+
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
@@ -40,6 +43,8 @@ export default function App(props) {
         const responseText = await response.text();
         var parsed = parseResponseText(responseText);
         console.log("parsed code running in app.js: " + parsed);
+        parsed += "--APP.JS STAMP--";
+        global.itbe = parsed;
 
 
       } catch (e) {
@@ -82,7 +87,8 @@ function parseResponseText(responseText){
   let _response = responseText;
   let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
 
-  var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');
+  var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');  
+  global.itbebefore=before;
   var takeOut = takeOutMLtags(before);
   var after = "AFTER: " + takeOut;
   console.log(before);
