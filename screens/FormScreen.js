@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
@@ -13,13 +13,39 @@ let xhtmlTestOutput = "-xhtml-";
 
 export default function FormScreen({route,navigation}) {
 
+  if(global.Gwood.formChosen == null) {
+    return(
+      <View>
+        <Text style={{fontSize:30, color:"red"}}>invalid formID.  Please restart the App</Text>
+      </View>
+    )
+  }
   //xhtmlTestOutput = route.params.xhtmltest;
 
  // requestxhtml();
-  return (
-    <ScrollView style={styles.form_container} contentContainerStyle={styles.form_contentContainer}>
+  const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
+  //var id = global.Gwood.formChosen;
 
-      <Text style={{fontSize:50}}>{global.Gwood.formChosen}</Text>
+
+
+  return (
+    <View>
+    {form_header_image}
+
+    <View>
+    <Text style = {styles.home_getStartedText}>HT:</Text>
+    <Text style = {styles.home_getStartedText}>Paragraph:</Text>
+
+    <Text style = {styles.home_getStartedText}>Name</Text>
+    <Text style = {styles.home_getStartedText}>email</Text>
+    <Text style = {styles.home_getStartedText}>phone</Text>
+    <Text style = {styles.home_getStartedText}>address</Text>
+    <Text style = {styles.home_getStartedText}>radio</Text>
+    <Text style = {styles.home_getStartedText}>company</Text>
+    </View>
+
+{/* 
+      
       <OptionButton
         icon="md-school"
         label="Read the Expo documentation"
@@ -37,74 +63,17 @@ export default function FormScreen({route,navigation}) {
         label="Ask a question on the forums"
         onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
         isLastOption
-      />
+      /> */}
 
       <View style={styles.form_getStartedContainer}>   
         <Text>This will be where all the forms are and junk heck yeah yeet</Text>
         <Text>{xhtmlTestOutput}</Text>
       </View>
 
-    </ScrollView>
-
+    </View>
 
   );
 }
-
-// //#region REACT FETCH functions      **call fetchFromStimulus();
-// function fetchFromStimulus() {
-//   var t = async () => {
-//     var url = 'https://www.glenwoodoilandgasinc.com/appinfo';
-//     var _result = (await fetch(url)).resp.text();//'no result get rekt';
-//   // await fetch(url).then((resp)=>{ return resp.text() }).then((text)=>{ console.log(text) })
-//     console.log("fetch result be like5: " + _result);
-//   }
-//   t();
-// }
-// //#endregion REACT FETCH functions
-
-// //#region [ rgba (10, 100, 10, 0.2) ] XML HTTP REQUEST functions  ** to use, call requestxhtml();
-
-// var DomParser = require('react-native-html-parser').DOMParser
-
-
-// function justPrintResponseText(){
-//   console.log(this.responseText);
-// }
-
-// /**
-//  * takes string and looks for > then looks for < and substrings in between them
-//  * @param {string} _string must have exactly one <tag>content</tag>
-//  */
-// function takeOutMLtags(_string){
-//   if(_string.includes(">"))
-//   {
-//     var returnString = _string.substring(_string.indexOf('>')+1, _string.lastIndexOf('<'));
-//     console.log("TAKE OUT RESULT:" + returnString);
-//     return returnString;
-//   }
-//   else return "INVALID_STRING - function:takeOutMLtags";
-// }
-
-// function parseResponseText(){
-//   let _response = this.responseText;
-//   let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
-//   var before = "BEFORE:" + xhtmlDom.querySelect('#home #paragraph');
-//   console.log(before);
-//   this.state = {updated: true};
-// }
-
-
-
-// function requestxhtml() {
-//   var xmlRequest = new XMLHttpRequest();
-//   xmlRequest.addEventListener("load", parseResponseText);
-//   xmlRequest.open("GET","https://www.glenwoodoilandgasinc.com/appinfo");
-//   xmlRequest.send();
-//   console.log("Success TOM");
-//   //return xmlReresponseText;
-// }
-// //#endregion XML HTTP REQUEST functions
-
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (

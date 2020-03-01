@@ -93,18 +93,19 @@ function parseResponseText(responseText){
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
 
+  console.log("name,email,phone,address,N,N");
 
 
 
 
+  // var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
+  // var takeOut = takeOutMLtags(before);
+  // var after = "AFTER: " + takeOut;
+  // console.log(before);
+  // console.log(after);
+ // return takeOut;
 
-  var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
-  var takeOut = takeOutMLtags(before);
-  var after = "AFTER: " + takeOut;
-  console.log(before);
-  console.log(after);
-  return takeOut;
-  //end of event listner
+  return "parseResponseText function...done";
 }
 
 /**
