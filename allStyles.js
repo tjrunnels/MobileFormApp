@@ -5,12 +5,17 @@ export default function styles(){
 }
 
 styles = StyleSheet.create({
+ 
+  app_container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
 
 
 /////////////////////////////////// Home page
   home_container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
   home_developmentModeText: {
     marginBottom: 20,

@@ -12,6 +12,9 @@ import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
 
+import styles from './allStyles';
+
+
 global.itbe = "like that";
 global.Gwood = new Object();
  
@@ -64,7 +67,7 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
+      <View style={styles.app_container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <NewNavigator />
@@ -88,14 +91,40 @@ function parseResponseText(responseText){
   let _response = responseText;
   let xhtmlDom = new DomParser().parseFromString(_response,'text/html');
   
+
+  //tomdo:delete////////////////////////////////////////   Parsing   ////////////////////////////////////////////////////////////////////////////////////////////////////  Parsing
   //at this point, xthmlDom is a Domparser version of the entire glenwood html.  let the parsing begin
   global.Gwood.forms = takeOutMLtags(xhtmlDom.querySelect('#forms')).split(',');
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
+  
+  //#region form stuff (hardcoding...sadly)  variables:  headerText, paragraph, formsNeeded
+  global.Gwood.form0 = new Object();
+  global.Gwood.form0.headerText = "testForm0 Header Text";
+  global.Gwood.form0.paragraph = "testForm0 paragraph";
+  global.Gwood.form0.formsNeeded = "name,email,phone,address,N,N";
 
-  console.log("name,email,phone,address,N,N");
+  global.Gwood.form1 = new Object();
+  global.Gwood.form1.headerText = "testForm1 Header Text";
+  global.Gwood.form1.paragraph = "testForm1 paragraph";
+  global.Gwood.form1.formsNeeded = "name,email,phone,address,N,N";
 
+  global.Gwood.form2 = new Object();
+  global.Gwood.form2.headerText = "testForm2 Header Text";
+  global.Gwood.form2.paragraph = "testForm2 paragraph";
+  global.Gwood.form2.formsNeeded = "name,email,phone,address,radio,N";
 
+  global.Gwood.form3 = new Object();
+  global.Gwood.form3.headerText = "testForm3 Header Text";
+  global.Gwood.form3.paragraph = "testForm3 paragraph";
+  global.Gwood.form3.formsNeeded = "name,email,phone,address,N,company";
+
+  global.Gwood.form4 = new Object();
+  global.Gwood.form4.headerText = "testForm4 Header Text";
+  global.Gwood.form4.paragraph = "testForm4 paragraph";
+  global.Gwood.form4.formsNeeded = "";
+
+  //#endregion
 
 
   // var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
@@ -136,7 +165,7 @@ function csvCountEntries(_string){
 
 
 
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',

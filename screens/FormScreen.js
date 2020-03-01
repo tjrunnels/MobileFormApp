@@ -20,28 +20,53 @@ export default function FormScreen({route,navigation}) {
       </View>
     )
   }
-  //xhtmlTestOutput = route.params.xhtmltest;
 
- // requestxhtml();
+  var formInfo;
+  //#region assigning formInfo the correct info based on formChosen
+  switch(global.Gwood.formChosen) {
+    case 0:
+      formInfo = global.Gwood.form0; break;
+    case 1:
+      formInfo = global.Gwood.form1; break;
+    case 2:
+      formInfo = global.Gwood.form2; break;
+    case 3:
+      formInfo = global.Gwood.form3; break;
+    case 4:
+      formInfo = global.Gwood.form4; break;
+    default: 
+      formInfo = global.Gwood.form0; //hopefully we never get to this....
+  }
+  //#endregion
+
   const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
   //var id = global.Gwood.formChosen;
 
 
+  var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
+  
   return (
     <View>
     {form_header_image}
 
     <View>
-    <Text style = {styles.home_getStartedText}>HT:</Text>
-    <Text style = {styles.home_getStartedText}>Paragraph:</Text>
+    <Text style = {styles.home_getStartedText}>{formInfo.headerText}</Text>
+    <Text style = {styles.home_getStartedText}>{formInfo.paragraph}</Text>
 
+    {_formsNeeded[0] == "N" ? null : <Text style = {styles.home_getStartedText}>Name</Text>}
+    {_formsNeeded[1] == "N" ? null : <Text style = {styles.home_getStartedText}>email</Text>}
+    {_formsNeeded[2] == "N" ? null : <Text style = {styles.home_getStartedText}>phone</Text>}
+    {_formsNeeded[3] == "N" ? null : <Text style = {styles.home_getStartedText}>address</Text>}
+    {_formsNeeded[4] == "N" ? null : <Text style = {styles.home_getStartedText}>radio</Text>}
+    {_formsNeeded[5] == "N" ? null : <Text style = {styles.home_getStartedText}>company</Text>}
+{/* 
     <Text style = {styles.home_getStartedText}>Name</Text>
     <Text style = {styles.home_getStartedText}>email</Text>
     <Text style = {styles.home_getStartedText}>phone</Text>
     <Text style = {styles.home_getStartedText}>address</Text>
     <Text style = {styles.home_getStartedText}>radio</Text>
-    <Text style = {styles.home_getStartedText}>company</Text>
+    <Text style = {styles.home_getStartedText}>company</Text> */}
     </View>
 
 {/* 
