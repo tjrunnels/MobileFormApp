@@ -55,6 +55,7 @@ export default function HomeScreen({navigation}) {
             <Text style={styles.home_helpLinkText}>Help, it didn’t automatically reload!</Text>
           </TouchableOpacity>
         </View>
+      
 
 
       </ScrollView>

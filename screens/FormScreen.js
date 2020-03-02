@@ -1,22 +1,32 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 import t from 'tcomb-form-native' //0.6.9
+import FormClass from '../components/FormClass'
 
 import styles from '../allStyles';
 
 let xhtmlTestOutput = "-xhtml-"; //tomdo: delete
 
 const Form = t.form.Form;
+const inputRef = React.createRef(null);
 
-const User = t.struct({
+var radio = t.enums({
+  propane: 'Propane Tanks',
+  fireplace: 'Gas Fireplaces, etc.',
+  water: 'Water Heaters',
+  furnace: 'Propane Furnaces',
+  generators: 'Propane Generators'
+});
+
+const t_Form = t.struct({
   email: t.String,
   username: t.String,
   password: t.String,
-  terms: t.Boolean
+  what_kind_of_installation_are_you_interested_in: radio
 });
 
 
@@ -52,11 +62,12 @@ export default function FormScreen({route,navigation}) {
     //#endregion
     var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
-
   return (
     <View>
     {form_header_image}
+    <ScrollView>
 
+{/*       
     <View>
     <Text style = {styles.home_getStartedText}>{formInfo.headerText}</Text>
     <Text style = {styles.home_getStartedText}>{formInfo.paragraph}</Text>
@@ -68,21 +79,21 @@ export default function FormScreen({route,navigation}) {
     {_formsNeeded[4] == "N" ? null : <Text style = {styles.home_getStartedText}>radio</Text>}
     {_formsNeeded[5] == "N" ? null : <Text style = {styles.home_getStartedText}>company</Text>}
 
-    </View>
+    </View> */}
 
-    <Form type={User} />
+    <FormClass 
+      formsNeeded={_formsNeeded}
+    />
 
-
-      <View style={styles.form_getStartedContainer}>   
-        <Text>This will be where all the forms are and junk heck yeah yeet</Text>
-        <Text>{xhtmlTestOutput}</Text>
-      </View>
+      </ScrollView>
 
     </View>
-
   );
 }
 
+function onChangedForm(){
+  console.log("change things are happening");
+}
 
 
 
@@ -101,3 +112,6 @@ function OptionButton({ icon, label, onPress, isLastOption }) {
     </RectButton>
   );
 }
+
+
+
