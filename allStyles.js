@@ -5,12 +5,44 @@ export default function styles(){
 }
 
 styles = StyleSheet.create({
+ 
+  app_container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
 
+
+
+
+/////////////////////////////////// FormClass
+  formClass_container: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 30,
+    backgroundColor: '#ffffff',
+  },
+  formClass_submitButton:{
+    marginTop:10,
+    paddingTop:20,
+    paddingBottom:20,
+    borderRadius:10,
+    borderWidth: 1,
+    backgroundColor:'#68a0cf',
+    borderColor: '#fff',
+    width: 300
+  },
+
+  formClass_submitButtonText: {
+     fontSize:20,
+     fontWeight:"bold",
+     textAlign:"center",
+     fontFamily:"Times New Roman",
+   },
 
 /////////////////////////////////// Home page
   home_container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
   home_developmentModeText: {
     marginBottom: 20,
@@ -108,7 +140,7 @@ styles = StyleSheet.create({
   },
 
   home_formButtonText: {
-     fontSize:50,
+     fontSize:20,
      fontWeight:"bold",
      textAlign:"center",
      fontFamily:"Times New Roman",

@@ -3,6 +3,7 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, Touc
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 
+import FormButton from '../components/FormButton';
 import { MonoText } from '../components/StyledText';
 
 import styles from '../allStyles';
@@ -12,35 +13,40 @@ export default function HomeScreen({navigation}) {
   //variables
   const home_front_logo = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
 
-
+  _forms = global.Gwood.forms;
 
   return (
     <View style={styles.home_container}>
-      <DevelopmentModeNotice />
-
-
-
+      {/* <DevelopmentModeNotice /> */}
 
        {/* Top, main logo on home page */}
-       <View style={styles.home_welcomeContainer}>
+      <View style={styles.home_welcomeContainer}>
           {home_front_logo}
+          <Text style = {styles.home_getStartedText}>{global.Gwood.homeheader}</Text>
       </View>
-
 
       <ScrollView style={styles.home_container} contentContainerStyle={styles.home_contentContainer}>
 
 
         <View style={styles.home_getStartedContainer}>   
-          <Text style={styles.home_getStartedText}>Head over to the form page</Text>
 
-          <TouchableOpacity 
-          style={styles.home_formButton} 
-          onPress={() => navigation.navigate('Form')}
-          >
-              <Text style={styles.home_formButtonText}>BETER</Text>
-          </TouchableOpacity>
+         <Text>{global.Gwood.homeParagraph}</Text>
+
+         
+         {/*   -Okay this is a lot.  first off, I know this is bad form.  i couldn't quite think of a way to do this with forEach
+              -What it does:   
+                if there is a form, display a FormButton which has name of form[index] and other parameters (suffix is just proof of concept
+                onPress, it sets the formChosen global variable to the index and navigates to the form screen     */}
+          <View>
+            {_forms[0] == null ? null : <FormButton name={_forms[0]} suffix="suf" onPress={() => {global.Gwood.formChosen=0; navigation.navigate('Form');}}/>}
+            {_forms[1] == null ? null : <FormButton name={_forms[1]} suffix="suf" onPress={() => {global.Gwood.formChosen=1; navigation.navigate('Form');}}/>}
+            {_forms[2] == null ? null : <FormButton name={_forms[2]} suffix="suf" onPress={() => {global.Gwood.formChosen=2; navigation.navigate('Form');}}/>}
+            {_forms[3] == null ? null : <FormButton name={_forms[3]} suffix="suf" onPress={() => {global.Gwood.formChosen=3; navigation.navigate('Form');}}/>}
+            {_forms[4] == null ? null : <FormButton name={_forms[4]} suffix="suf" onPress={() => {global.Gwood.formChosen=4; navigation.navigate('Form');}}/>}
+          </View>
 
 
+          {/* old home screen stuff can be found at the bottom region "old home" */}
         </View>
 
 
@@ -49,17 +55,10 @@ export default function HomeScreen({navigation}) {
             <Text style={styles.home_helpLinkText}>Help, it didn’t automatically reload!</Text>
           </TouchableOpacity>
         </View>
+      
 
 
       </ScrollView>
-
-      <View style={styles.home_tabBarInfoContainer}>
-        <Text style={styles.home_tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.home_codeHighlightContainer, styles.home_navigationFilename]}>
-          <MonoText style={styles.home_codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
 }
@@ -67,6 +66,8 @@ export default function HomeScreen({navigation}) {
 HomeScreen.navigationOptions = {
   header: null,
 };
+
+
 
 function DevelopmentModeNotice() {
   if (__DEV__) {
@@ -100,3 +101,26 @@ function handleHelpPress() {
     'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
   );
 }
+
+
+ //#region old home screen
+          // <TouchableOpacity 
+          // style={styles.home_formButton} 
+          // onPress={() => navigation.navigate('Form')}
+          // >
+          //     <Text style={styles.home_formButtonText}>Form</Text>
+          // </TouchableOpacity>
+
+          // <TouchableOpacity 
+          // style={styles.home_formButton} 
+          // onPress={() => navigation.navigate('Loading')}
+          // >
+          //     <Text style={styles.home_formButtonText}>Loading</Text>
+          // </TouchableOpacity>
+          // <TouchableOpacity 
+          // style={styles.home_formButton} 
+          // onPress={() => navigation.navigate('Links')}
+          // >
+          //     <Text>Links</Text>
+          // </TouchableOpacity>         
+ //#endregion
