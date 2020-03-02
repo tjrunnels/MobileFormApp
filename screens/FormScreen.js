@@ -1,18 +1,28 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button,Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
+import t from 'tcomb-form-native' //0.6.9
+
 import styles from '../allStyles';
 
+let xhtmlTestOutput = "-xhtml-"; //tomdo: delete
 
+const Form = t.form.Form;
 
-let xhtmlTestOutput = "-xhtml-";
+const User = t.struct({
+  email: t.String,
+  username: t.String,
+  password: t.String,
+  terms: t.Boolean
+});
 
 
 export default function FormScreen({route,navigation}) {
 
+  //error page if the form page was reached out of use case
   if(global.Gwood.formChosen == null) {
     return(
       <View>
@@ -21,31 +31,28 @@ export default function FormScreen({route,navigation}) {
     )
   }
 
-  var formInfo;
-  //#region assigning formInfo the correct info based on formChosen
-  switch(global.Gwood.formChosen) {
-    case 0:
-      formInfo = global.Gwood.form0; break;
-    case 1:
-      formInfo = global.Gwood.form1; break;
-    case 2:
-      formInfo = global.Gwood.form2; break;
-    case 3:
-      formInfo = global.Gwood.form3; break;
-    case 4:
-      formInfo = global.Gwood.form4; break;
-    default: 
-      formInfo = global.Gwood.form0; //hopefully we never get to this....
-  }
-  //#endregion
+  //varaibles
+    const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
+    var formInfo;
+    //#region assigning formInfo the correct info based on formChosen
+    switch(global.Gwood.formChosen) {
+      case 0:
+        formInfo = global.Gwood.form0; break;
+      case 1:
+        formInfo = global.Gwood.form1; break;
+      case 2:
+        formInfo = global.Gwood.form2; break;
+      case 3:
+        formInfo = global.Gwood.form3; break;
+      case 4:
+        formInfo = global.Gwood.form4; break;
+      default: 
+        formInfo = global.Gwood.form0; //hopefully we never get to this....
+    }
+    //#endregion
+    var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
-  const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
-  //var id = global.Gwood.formChosen;
 
-
-  var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
-
-  
   return (
     <View>
     {form_header_image}
@@ -60,35 +67,11 @@ export default function FormScreen({route,navigation}) {
     {_formsNeeded[3] == "N" ? null : <Text style = {styles.home_getStartedText}>address</Text>}
     {_formsNeeded[4] == "N" ? null : <Text style = {styles.home_getStartedText}>radio</Text>}
     {_formsNeeded[5] == "N" ? null : <Text style = {styles.home_getStartedText}>company</Text>}
-{/* 
-    <Text style = {styles.home_getStartedText}>Name</Text>
-    <Text style = {styles.home_getStartedText}>email</Text>
-    <Text style = {styles.home_getStartedText}>phone</Text>
-    <Text style = {styles.home_getStartedText}>address</Text>
-    <Text style = {styles.home_getStartedText}>radio</Text>
-    <Text style = {styles.home_getStartedText}>company</Text> */}
+
     </View>
 
-{/* 
-      
-      <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
+    <Form type={User} />
 
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      /> */}
 
       <View style={styles.form_getStartedContainer}>   
         <Text>This will be where all the forms are and junk heck yeah yeet</Text>
@@ -100,12 +83,16 @@ export default function FormScreen({route,navigation}) {
   );
 }
 
+
+
+
+
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (
     <RectButton style={[styles.form_option, isLastOption && styles.form_lastOption]} onPress={onPress}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.form_optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+          <Ionicons name={icon} size={22} color="rgba(100,0,0,0.35)" />
         </View>
         <View style={styles.form_optionTextContainer}>
           <Text style={styles.form_optionText}>{label}</Text>
