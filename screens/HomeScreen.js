@@ -13,14 +13,14 @@ export default function HomeScreen({navigation}) {
   //variables
   const home_front_logo = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
 
-  var _forms = global.Gwood.forms;
+  _forms = global.Gwood.forms;
 
   return (
     <View style={styles.home_container}>
       {/* <DevelopmentModeNotice /> */}
 
        {/* Top, main logo on home page */}
-       <View style={styles.home_welcomeContainer}>
+      <View style={styles.home_welcomeContainer}>
           {home_front_logo}
           <Text style = {styles.home_getStartedText}>{global.Gwood.homeheader}</Text>
       </View>

@@ -11,25 +11,6 @@ import styles from '../allStyles';
 
 let xhtmlTestOutput = "-xhtml-"; //tomdo: delete
 
-const Form = t.form.Form;
-const inputRef = React.createRef(null);
-
-var radio = t.enums({
-  propane: 'Propane Tanks',
-  fireplace: 'Gas Fireplaces, etc.',
-  water: 'Water Heaters',
-  furnace: 'Propane Furnaces',
-  generators: 'Propane Generators'
-});
-
-const t_Form = t.struct({
-  email: t.String,
-  username: t.String,
-  password: t.String,
-  what_kind_of_installation_are_you_interested_in: radio
-});
-
-
 export default function FormScreen({route,navigation}) {
 
   //error page if the form page was reached out of use case
@@ -90,12 +71,6 @@ export default function FormScreen({route,navigation}) {
     </View>
   );
 }
-
-function onChangedForm(){
-  console.log("change things are happening");
-}
-
-
 
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
