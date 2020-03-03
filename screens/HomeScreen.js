@@ -11,7 +11,7 @@ import styles from '../allStyles';
 export default function HomeScreen({navigation}) {
 
   //variables
-  const home_front_logo = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
+  const home_front_logo = <Image source={require("../assets/images/gwood.png")} style={{width:300}}/>;
 
   _forms = global.Gwood.forms;
 

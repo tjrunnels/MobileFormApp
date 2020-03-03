@@ -8,19 +8,25 @@ styles = StyleSheet.create({
  
   app_container: {
     flex: 1,
-    backgroundColor: '#fff',
+  },
+
+  navigatorStyle: {
+    backgroundColor: '#e21f26',
   },
 
 
-
-
 /////////////////////////////////// FormClass
+
+  formStyle: {
+    color: "white",
+  },
   formClass_container: {
     justifyContent: 'center',
     marginTop: 50,
     padding: 30,
-    backgroundColor: '#ffffff',
-  },
+    backgroundColor: '#141414',
+    color: "white",
+    },
   formClass_submitButton:{
     marginTop:10,
     paddingTop:20,
@@ -42,7 +48,7 @@ styles = StyleSheet.create({
 /////////////////////////////////// Home page
   home_container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#141414',
   },
   home_developmentModeText: {
     marginBottom: 20,
@@ -134,8 +140,8 @@ styles = StyleSheet.create({
     paddingBottom:20,
     borderRadius:10,
     borderWidth: 1,
-    backgroundColor:'#68a0cf',
-    borderColor: '#fff',
+    backgroundColor:'rgba(150, 150, 150, 1)',
+    borderColor: 'rgba(150, 150, 150, .5)',
      width: 300
   },
 

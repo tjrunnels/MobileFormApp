@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, TouchableHighlightBase } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -69,8 +69,8 @@ export default function App(props) {
     return (
       <View style={styles.app_container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <NewNavigator />
+        <NavigationContainer ref={containerRef} initialState={initialNavigationState} >
+          <NewNavigator/>
         </NavigationContainer>
       </View>
     );

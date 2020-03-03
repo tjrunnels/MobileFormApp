@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight,Dimensions  } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
@@ -23,7 +23,7 @@ export default function FormScreen({route,navigation}) {
   }
 
   //varaibles
-    const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
+    const form_header_image = <Image source={require("../assets/images/form.jpg")} style={{width: Dimensions.get('window').width}}/>;
     var formInfo;
     //#region assigning formInfo the correct info based on formChosen
     switch(global.Gwood.formChosen) {
@@ -44,7 +44,7 @@ export default function FormScreen({route,navigation}) {
     var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
   return (
-    <View>
+    <View style={styles.home_container}>
     {form_header_image}
     <ScrollView>
 

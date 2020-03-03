@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import FormScreen from '../screens/FormScreen';
 import LoadingScreen from '../screens/LoadingScreen';
+import styles from '../allStyles';
 //NEWSCREEN you have to add new screens here too ^
 
 const BottomTab = createStackNavigator();
@@ -17,13 +18,14 @@ export default function BottomTabNavigator({ navigation, route }) {
   //navigation.setOptions({ headerTitle: getHeaderTitle(route) });
   return (
     //bottomtab navigator element
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} style={styles.navigatorStyle}>
       {/* homes page element */}
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
           title: 'Get Started',
+          headerStyle: styles.navigatorStyle,  //made it red
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
@@ -33,6 +35,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={LinksScreen}
         options={{
           title: 'Resources',
+          headerStyle: styles.navigatorStyle,  //made it red
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
@@ -42,6 +45,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={FormScreen}
         options={{
           title: 'Form',
+          headerStyle: styles.navigatorStyle,  //made it red
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
@@ -51,6 +55,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={LoadingScreen}
         options={{
           title: 'Loading',
+          headerStyle: styles.navigatorStyle,  //made it red
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />

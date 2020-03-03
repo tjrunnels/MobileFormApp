@@ -8,6 +8,16 @@ import styles from '../allStyles';
 import { sendEmail } from './emailSender';
 
 
+var t2 = require('tcomb-form-native');
+var _ = require('lodash');
+
+// clone the default stylesheet
+const mystylesheet = _.cloneDeep(t2.form.Form.stylesheet);
+
+// overriding the text color
+mystylesheet.textbox.normal.color = 'white';
+mystylesheet.controlLabel.normal.color = 'white';
+
 
 
 const Form = t.form.Form;
@@ -99,9 +109,11 @@ handleSubmit = () => {
   render() {
     var _fieldsNeeded = this.props.formsNeeded;
     var _options = {
+      stylesheet: mystylesheet,
         fields: {
             name: {
                 hidden: _fieldsNeeded[0] == "N" ? true : false // <= label for the name field
+
             },
             email: {
                 hidden: _fieldsNeeded[1] == "N" ? true : false
@@ -126,6 +138,7 @@ handleSubmit = () => {
             ref={c => this._form = c} // assign a ref
             type={User} 
             options={_options}
+            style={styles.formStyle}
           />
           <TouchableOpacity onPress={this.handleSubmit} style={styles.formClass_submitButton}>
             <Text style={styles.formClass_submitButtonText}>Submit</Text>
