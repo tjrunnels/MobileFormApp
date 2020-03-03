@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight,Dimensions  } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight,Dimensions, KeyboardAvoidingView  } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 import t from 'tcomb-form-native' //0.6.9
 import FormClass from '../components/FormClass'
@@ -43,12 +45,13 @@ export default function FormScreen({route,navigation}) {
     //#endregion
     var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
+    
   return (
     <View style={styles.home_container}>
     {form_header_image}
     <ScrollView>
 
-{/*       
+    {/*       
     <View>
     <Text style = {styles.home_getStartedText}>{formInfo.headerText}</Text>
     <Text style = {styles.home_getStartedText}>{formInfo.paragraph}</Text>
@@ -62,16 +65,20 @@ export default function FormScreen({route,navigation}) {
 
     </View> */}
 
-    <FormClass 
-      formsNeeded={_formsNeeded}
-    />
+
+<KeyboardAwareScrollView>
+    <View>
+          <FormClass 
+            formsNeeded={_formsNeeded}
+          />
+          </View>
+          </KeyboardAwareScrollView>
 
       </ScrollView>
 
     </View>
   );
 }
-
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (

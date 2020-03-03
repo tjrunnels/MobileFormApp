@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button,TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Button,TouchableOpacity, Text, KeyboardAvoidingView, TextInput } from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
 
 import styles from '../allStyles';
 
 import { sendEmail } from './emailSender';
+
 
 
 var t2 = require('tcomb-form-native');
@@ -105,6 +106,7 @@ handleSubmit = () => {
 
     }
 
+  onPress() {console.log("hello");}
       
   render() {
     var _fieldsNeeded = this.props.formsNeeded;
@@ -113,7 +115,6 @@ handleSubmit = () => {
         fields: {
             name: {
                 hidden: _fieldsNeeded[0] == "N" ? true : false // <= label for the name field
-
             },
             email: {
                 hidden: _fieldsNeeded[1] == "N" ? true : false
@@ -134,16 +135,36 @@ handleSubmit = () => {
       };
     return (
         <View style={styles.formClass_container}>
-          <Form 
-            ref={c => this._form = c} // assign a ref
-            type={User} 
-            options={_options}
-            style={styles.formStyle}
-          />
+
+          
+
+
+                <Form 
+                    ref={c => this._form = c} // assign a ref
+                    type={User} 
+                    options={_options}
+                    onPress={() => {console.log("hello");}}
+                    style={styles.formStyle}
+                    onFocus={this._scrollToInput.bind(this)}
+                />
+
+
           <TouchableOpacity onPress={this.handleSubmit} style={styles.formClass_submitButton}>
             <Text style={styles.formClass_submitButtonText}>Submit</Text>
           </TouchableOpacity>
         </View>
       );
   }
+
+_scrollToInput() {
+    const scrollResponder = this._form.myScrollView.getScrollResponder();
+    const inputHandle = React.findNodeHandle(this._form);
+  
+    scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+      inputHandle, // The TextInput node handle
+      0, // The scroll view's bottom "contentInset" (default 0)
+      true // Prevent negative scrolling
+    );
+  }
+  
 }
