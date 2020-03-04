@@ -9,10 +9,8 @@ import { sendEmail } from './emailSender';
 
 import { sendGridEmail } from 'react-native-sendgrid';
 
-
+//tomdo figure this out
 var APIKey = process.env.SENDGRID_API_KEY;
-APIKey = "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";
-
 
 
 var t2 = require('tcomb-form-native');
