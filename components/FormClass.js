@@ -7,6 +7,12 @@ import styles from '../allStyles';
 
 import { sendEmail } from './emailSender';
 
+import { sendGridEmail } from 'react-native-sendgrid';
+
+
+var APIKey = process.env.SENDGRID_API_KEY;
+APIKey = "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";
+
 
 
 var t2 = require('tcomb-form-native');
@@ -95,18 +101,37 @@ handleSubmit = () => {
 
     var email_formName = global.Gwood.forms[global.Gwood.formChosen];
 
-    //sendEmail(to, subject, body, options = {}) {
-    sendEmail(
-      'supertom500@gmail.com',
-      "APP: " + email_formName + " - " + savedValues.name,
-      email_body
-    ).then(() => {
-      console.log('Our email successful provided to device mail ');
-    });
+    // //sendEmail(to, subject, body, options = {}) {
+    // sendEmail(
+    //   'supertom500@gmail.com',
+    //   "APP: " + email_formName + " - " + savedValues.name,
+    //   email_body
+    // ).then(() => {
+    //   console.log('Our email successful provided to device mail ');
+    // });
+
+    const msg = {
+        to: 'supertom500@gmail.com',
+        from: 'test@example.com',
+        subject: "APP_FORM: " + email_formName + " - " + savedValues.name,
+        text: email_body,
+    };
+
+    const sendRequest = sendGridEmail(
+        APIKey,
+        'supertom500@gmail.com',
+        'test@example.com',
+        "APP_FORM: " + email_formName + " - " + savedValues.name,
+        email_body
+        );
+
+    sendRequest.then((response) => {
+            console.log("success")
+        }).catch((error) => {
+            console.log(error)
+                });
 
     }
-
-  onPress() {console.log("hello");}
       
   render() {
     var _fieldsNeeded = this.props.formsNeeded;
@@ -136,18 +161,14 @@ handleSubmit = () => {
     return (
         <View style={styles.formClass_container}>
 
-          
-
-
-                <Form 
-                    ref={c => this._form = c} // assign a ref
-                    type={User} 
-                    options={_options}
-                    onPress={() => {console.log("hello");}}
-                    style={styles.formStyle}
-                    onFocus={this._scrollToInput.bind(this)}
-                />
-
+            <Form 
+                ref={c => this._form = c} // assign a ref
+                type={User} 
+                options={_options}
+                onPress={() => {console.log("hello");}}
+                style={styles.formStyle}
+                onFocus={this._scrollToInput.bind(this)}
+            />
 
           <TouchableOpacity onPress={this.handleSubmit} style={styles.formClass_submitButton}>
             <Text style={styles.formClass_submitButtonText}>Submit</Text>

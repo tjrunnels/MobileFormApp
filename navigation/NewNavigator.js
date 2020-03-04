@@ -5,80 +5,27 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import FormScreen from '../screens/FormScreen';
 import LoadingScreen from '../screens/LoadingScreen';
-import styles from '../allStyles';
 //NEWSCREEN you have to add new screens here too ^
+import styles from '../allStyles';
 
-const BottomTab = createStackNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
 
-export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  //navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+const Stack = createStackNavigator();
+
+export default function NewNavigator() {
   return (
-    //bottomtab navigator element
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} style={styles.navigatorStyle}>
-      {/* homes page element */}
-      <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          title: 'Get Started',
-          headerStyle: styles.navigatorStyle,  //made it red
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
-        }}
-      />
-      {/* Link page element */}
-      <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
-        options={{
-          title: 'Resources',
-          headerStyle: styles.navigatorStyle,  //made it red
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
-        }}
-      />
-      {/* form element (DEV) */}
-      <BottomTab.Screen
-        name="Form"
-        component={FormScreen}
-        options={{
-          title: 'Form',
-          headerStyle: styles.navigatorStyle,  //made it red
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
-        }}
-      />
-      {/* form element (DEV) */}
-      <BottomTab.Screen
-        name="Loading"
-        component={LoadingScreen}
-        options={{
-          title: 'Loading',
-          headerStyle: styles.navigatorStyle,  //made it red
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
-        }}
-      />
-
-      {/* NEWSCREEN add new page elements here */}
-
-    </BottomTab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} options={{headerStyle: styles.navigatorStyle}}/>
+      <Stack.Screen name="Links" component={LinksScreen} options={{headerStyle: styles.navigatorStyle}}/>
+      <Stack.Screen name="Form" component={FormScreen} options={{headerStyle: styles.navigatorStyle}}/>
+      <Stack.Screen name="Loading" component={LoadingScreen} options={{headerStyle: styles.navigatorStyle}}/>
+    </Stack.Navigator>
   );
 }
 
-function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
-
-  switch (routeName) {
-    case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
-    case 'Form':
-      return 'Fill out a form and we\'ll get back to you';
-    case 'Loading':
-      return 'loading';
-
-    //NEWSCREEN should prob add one of these too ^
-  }
-}
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <NewNavigator />
+//     </NavigationContainer>
+//   );
+// }
