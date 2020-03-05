@@ -117,9 +117,9 @@ function parseResponseText(responseText){
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
   
-  console.log("THAT GUY IS ILL: " + takeOutMLtags(xhtmlDom.querySelect('#one #formsNeeded')));
+  global.Gwood.AboutPicture = require("./assets/images/contactUs.jpg");
+  
   //#region form stuff (hardcoding...sadly)  variables:  headerText, paragraph, formsNeeded
-
   global.Gwood.form0 = new Object();
   global.Gwood.form0.titles = global.Gwood.forms[0];
   global.Gwood.form0.headerText = takeOutMLtags(xhtmlDom.querySelect('#one #headerText'));

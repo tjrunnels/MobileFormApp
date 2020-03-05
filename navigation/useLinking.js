@@ -13,6 +13,7 @@ export default function(containerRef) {
           Settings: 'settings',
           Form: 'form',
           Loading: 'loading',
+          About: 'about',
         },
       },
     },

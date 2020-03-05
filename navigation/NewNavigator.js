@@ -5,8 +5,11 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import FormScreen from '../screens/FormScreen';
 import LoadingScreen from '../screens/LoadingScreen';
+import AboutScreen from '../screens/AboutScreen';
+
 //NEWSCREEN you have to add new screens here too ^
 import styles from '../allStyles';
+
 
 
 const Stack = createStackNavigator();
@@ -18,6 +21,7 @@ export default function NewNavigator() {
       <Stack.Screen name="Links" component={LinksScreen} options={{headerStyle: styles.navigatorStyle}}/>
       <Stack.Screen name="Form" component={FormScreen} options={{headerStyle: styles.navigatorStyle}}/>
       <Stack.Screen name="Loading" component={LoadingScreen} options={{headerStyle: styles.navigatorStyle}}/>
+      <Stack.Screen name="About" component={AboutScreen} options={{headerStyle: styles.navigatorStyle}}/>
     </Stack.Navigator>
   );
 }
