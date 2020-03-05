@@ -117,36 +117,44 @@ function parseResponseText(responseText){
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
   
+  console.log("THAT GUY IS ILL: " + takeOutMLtags(xhtmlDom.querySelect('#one #formsNeeded')));
   //#region form stuff (hardcoding...sadly)  variables:  headerText, paragraph, formsNeeded
+
   global.Gwood.form0 = new Object();
   global.Gwood.form0.titles = global.Gwood.forms[0];
-  global.Gwood.form0.headerText = "testForm0 Header Text";
-  global.Gwood.form0.paragraph = "testForm0 paragraph";
-  global.Gwood.form0.formsNeeded = "name,email,phone,address,N,N";
+  global.Gwood.form0.headerText = takeOutMLtags(xhtmlDom.querySelect('#one #headerText'));
+  global.Gwood.form0.paragraph = takeOutMLtags(xhtmlDom.querySelect('#one #paragraph'));
+  global.Gwood.form0.formsNeeded = takeOutMLtags(xhtmlDom.querySelect('#one #formsNeeded'));
+  global.Gwood.form0.picture = require("./assets/images/residential-propane-banner.jpg");
 
   global.Gwood.form1 = new Object();
   global.Gwood.form1.titles = global.Gwood.forms[1];
-  global.Gwood.form1.headerText = "testForm1 Header Text";
-  global.Gwood.form1.paragraph = "testForm1 paragraph";
-  global.Gwood.form1.formsNeeded = "name,email,phone,address,N,N";
+  global.Gwood.form1.headerText = takeOutMLtags(xhtmlDom.querySelect('#two #headerText'));
+  global.Gwood.form1.paragraph = takeOutMLtags(xhtmlDom.querySelect('#two #paragraph'));
+  global.Gwood.form1.formsNeeded = takeOutMLtags(xhtmlDom.querySelect('#two #formsNeeded'));
+  global.Gwood.form1.picture = require("./assets/images/residential-heatingOil-banner.jpg");
 
   global.Gwood.form2 = new Object();
   global.Gwood.form2.titles = global.Gwood.forms[2];
-  global.Gwood.form2.headerText = "testForm2 Header Text";
-  global.Gwood.form2.paragraph = "testForm2 paragraph";
-  global.Gwood.form2.formsNeeded = "name,email,phone,address,radio,N";
+  global.Gwood.form2.headerText = takeOutMLtags(xhtmlDom.querySelect('#three #headerText'));
+  global.Gwood.form2.paragraph = takeOutMLtags(xhtmlDom.querySelect('#three #paragraph'));
+  global.Gwood.form2.formsNeeded = takeOutMLtags(xhtmlDom.querySelect('#three #formsNeeded'));
+  global.Gwood.form2.picture = require("./assets/images/residential-gasLogs-banner.jpg");
 
   global.Gwood.form3 = new Object();
   global.Gwood.form3.titles = global.Gwood.forms[3];
-  global.Gwood.form3.headerText = "testForm3 Header Text";
-  global.Gwood.form3.paragraph = "testForm3 paragraph";
-  global.Gwood.form3.formsNeeded = "name,email,phone,address,N,company";
+  global.Gwood.form3.headerText = takeOutMLtags(xhtmlDom.querySelect('#four #headerText'));
+  global.Gwood.form3.paragraph = takeOutMLtags(xhtmlDom.querySelect('#four #paragraph'));
+  global.Gwood.form3.formsNeeded = takeOutMLtags(xhtmlDom.querySelect('#four #formsNeeded'));
+  global.Gwood.form3.picture = require("./assets/images/commercial-propane-banner.jpeg");
 
   global.Gwood.form4 = new Object();
   global.Gwood.form4.titles = global.Gwood.forms[4];
-  global.Gwood.form4.headerText = "testForm4 Header Text";
-  global.Gwood.form4.paragraph = "testForm4 paragraph";
-  global.Gwood.form4.formsNeeded = "";
+  global.Gwood.form4.headerText = takeOutMLtags(xhtmlDom.querySelect('#five #headerText'));
+  global.Gwood.form4.paragraph = takeOutMLtags(xhtmlDom.querySelect('#five #paragraph'));
+  global.Gwood.form4.formsNeeded = takeOutMLtags(xhtmlDom.querySelect('#five #formsNeeded'));
+  //global.Gwood.form4.picture = require("./assets/images/residential-propane-banner.jpg");
+
 
   //#endregion
 
@@ -173,15 +181,19 @@ function takeOutMLtags(_string){
     //console.log("TAKE OUT RESULT:" + returnString);
     return returnString;
   }
-  else return "INVALID_STRING - function:takeOutMLtags";
+  else return "null";
 }
 
 /**
- * takes a csv string and returns 
+ * an extra parsing for pictures, dont need it now cause just doing photos on device 
  * @param {string} _string must be a csv
  */
-function csvCountEntries(_string){
-  return _string.split(',');
+function pictureLocationParse(_string){
+  
+  if(_string.substring(0,6) == "inApp:")
+      return '../assets/images/' + _string.substring(6); //location from the perspective of FormHeader.js
+  else
+      return {uri: _string};
 }
 
 

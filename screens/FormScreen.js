@@ -5,7 +5,6 @@ import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-
 import t from 'tcomb-form-native' //0.6.9
 import FormClass from '../components/FormClass'
 import FormHeader from '../components/FormHeader'
@@ -49,10 +48,10 @@ export default function FormScreen({route,navigation}) {
     
   return (
     <BackgroundWrapper>
-      <FormHeader title={formInfo.titles}/>
+      <FormHeader title={formInfo.titles} picture={formInfo.picture}/>
       
       <ScrollView>
-
+        <Text style={{color:"white"}}>{formInfo.paragraph}</Text>
         <KeyboardAwareScrollView>
           <View>
             <FormClass 
