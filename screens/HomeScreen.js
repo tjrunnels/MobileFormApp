@@ -1,23 +1,29 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
+import { Image, Platform, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback, Linking} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 
 import FormButton from '../components/FormButton';
 import { MonoText } from '../components/StyledText';
 
+import BackroundWrapper from '../components/BackgroundWrapper';
+
 import styles from '../allStyles';
+
+var bImage; 
 
 export default function HomeScreen({navigation}) {
 
+
   //variables
-  const home_front_logo = <Image source={require("../assets/images/gwood.png")} style={{width:300}}/>;
+  const home_front_logo = <Image source={require("../assets/images/gwood.png")} style={{width:350}}/>;
+  const phoneNumber = "5619069583";
 
   _forms = global.Gwood.forms;
 
   return (
-    <View style={styles.home_container}>
-      {/* <DevelopmentModeNotice /> */}
+    <BackroundWrapper>
+    {/* <DevelopmentModeNotice /> */}
 
        {/* Top, main logo on home page */}
       <View style={styles.home_welcomeContainer}>
@@ -30,7 +36,7 @@ export default function HomeScreen({navigation}) {
 
         <View style={styles.home_getStartedContainer}>   
 
-         <Text>{global.Gwood.homeParagraph}</Text>
+         <Text style={{color:"white"}}>{global.Gwood.homeParagraph}</Text>
 
          
          {/*   -Okay this is a lot.  first off, I know this is bad form.  i couldn't quite think of a way to do this with forEach
@@ -43,8 +49,16 @@ export default function HomeScreen({navigation}) {
             {_forms[2] == null ? null : <FormButton name={_forms[2]} suffix="suf" onPress={() => {global.Gwood.formChosen=2; navigation.navigate('Form');}}/>}
             {_forms[3] == null ? null : <FormButton name={_forms[3]} suffix="suf" onPress={() => {global.Gwood.formChosen=3; navigation.navigate('Form');}}/>}
             {_forms[4] == null ? null : <FormButton name={_forms[4]} suffix="suf" onPress={() => {global.Gwood.formChosen=4; navigation.navigate('Form');}}/>}
+          
+          
+            <FormButton name="About Us" onPress={()=>{Linking.openURL(`tel:${phoneNumber}`)}} />
+            <FormButton name="Photos" onPress={()=>{Linking.openURL(`tel:${phoneNumber}`)}} />
+            <FormButton name="Give us a call!" onPress={()=>{Linking.openURL(`tel:${phoneNumber}`)}} />
+
+
           </View>
 
+            
 
           {/* old home screen stuff can be found at the bottom region "old home" */}
         </View>
@@ -52,14 +66,14 @@ export default function HomeScreen({navigation}) {
 
         <View style={styles.home_helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.home_helpLink}>
-            <Text style={styles.home_helpLinkText}>Help, it didn’t automatically reload!</Text>
+            {/* <Text style={styles.home_helpLinkText}>Help, it didn’t automatically reload!</Text> */}
           </TouchableOpacity>
         </View>
       
 
 
       </ScrollView>
-    </View>
+    </BackroundWrapper> 
   );
 }
 

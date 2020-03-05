@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View, TouchableHighlightBase } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, TouchableHighlightBase, Alert, ImageBackground } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,10 +39,27 @@ export default function App(props) {
           ...Ionicons.font,
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         });
+        await Font.loadAsync({
+          'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
+        });
+        await Font.loadAsync({
+          'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+        });
+
+        global.BackgroundImage = './assets/images/mobileappbackground.jpeg';
+
 
         //Load from Stimulus
         const response = await fetch('https://www.glenwoodoilandgasinc.com/appinfo',{
           method: 'GET'
+        }).catch(() => {
+          Alert.alert(
+            'Connection Failed',
+            'You may not be connected to the internet.  Close the app and try again.',
+            [
+              {text: 'Ok'}
+            ]
+          );
         });
         const responseText = await response.text();
         var parsed = parseResponseText(responseText);
@@ -94,32 +111,39 @@ function parseResponseText(responseText){
 
   //tomdo:delete////////////////////////////////////////   Parsing   ////////////////////////////////////////////////////////////////////////////////////////////////////  Parsing
   //at this point, xthmlDom is a Domparser version of the entire glenwood html.  let the parsing begin
+  
   global.Gwood.forms = takeOutMLtags(xhtmlDom.querySelect('#forms')).split(',');
+
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
   
   //#region form stuff (hardcoding...sadly)  variables:  headerText, paragraph, formsNeeded
   global.Gwood.form0 = new Object();
+  global.Gwood.form0.titles = global.Gwood.forms[0];
   global.Gwood.form0.headerText = "testForm0 Header Text";
   global.Gwood.form0.paragraph = "testForm0 paragraph";
   global.Gwood.form0.formsNeeded = "name,email,phone,address,N,N";
 
   global.Gwood.form1 = new Object();
+  global.Gwood.form1.titles = global.Gwood.forms[1];
   global.Gwood.form1.headerText = "testForm1 Header Text";
   global.Gwood.form1.paragraph = "testForm1 paragraph";
   global.Gwood.form1.formsNeeded = "name,email,phone,address,N,N";
 
   global.Gwood.form2 = new Object();
+  global.Gwood.form2.titles = global.Gwood.forms[2];
   global.Gwood.form2.headerText = "testForm2 Header Text";
   global.Gwood.form2.paragraph = "testForm2 paragraph";
   global.Gwood.form2.formsNeeded = "name,email,phone,address,radio,N";
 
   global.Gwood.form3 = new Object();
+  global.Gwood.form3.titles = global.Gwood.forms[3];
   global.Gwood.form3.headerText = "testForm3 Header Text";
   global.Gwood.form3.paragraph = "testForm3 paragraph";
   global.Gwood.form3.formsNeeded = "name,email,phone,address,N,company";
 
   global.Gwood.form4 = new Object();
+  global.Gwood.form4.titles = global.Gwood.forms[4];
   global.Gwood.form4.headerText = "testForm4 Header Text";
   global.Gwood.form4.paragraph = "testForm4 paragraph";
   global.Gwood.form4.formsNeeded = "";

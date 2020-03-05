@@ -13,7 +13,7 @@ export default class FormButton extends React.Component {
           onPress={this.props.onPress}
           >
             <Text style={styles.home_formButtonText}>
-                {this.props.name} {this.props.suffix}
+                {this.props.name} {this.props.suffix == null ? null : this.props.suffix}
             </Text>
           </TouchableOpacity>
 

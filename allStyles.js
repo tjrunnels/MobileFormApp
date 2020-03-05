@@ -1,5 +1,11 @@
 import { Image, Platform, StyleSheet} from 'react-native';
 
+
+var glenwoodRed = '#e21f26';
+var glenwoodFont = 'Montserrat';
+var glenwoodFontBold = 'Montserrat-Bold';
+var glenwoodBackground = require('./assets/images/mobileappbackground.jpeg');
+
 export default function styles(){
     return styles;
 }
@@ -8,12 +14,36 @@ styles = StyleSheet.create({
  
   app_container: {
     flex: 1,
+    backgroundColor: 'black',
+  },
+
+  app_backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
   },
 
   navigatorStyle: {
-    backgroundColor: '#e21f26',
+    backgroundColor: glenwoodRed,
   },
 
+
+
+////////////////////////////////// FormHeader
+  formHeader_rectangle: {
+    width: "auto",
+    height: "auto",
+    backgroundColor: glenwoodRed,
+    alignSelf: 'flex-start',
+  },
+
+  formHeader_text: {
+    fontSize:25,
+    fontFamily: glenwoodFontBold,
+    padding: 10,
+    paddingRight: 25,
+    paddingLeft: 20,
+    color:"white",
+  },
 
 /////////////////////////////////// FormClass
 
@@ -24,9 +54,10 @@ styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 30,
-    backgroundColor: '#141414',
+    backgroundColor: 'transparent',
     color: "white",
     },
+
   formClass_submitButton:{
     marginTop:10,
     paddingTop:20,
@@ -48,7 +79,6 @@ styles = StyleSheet.create({
 /////////////////////////////////// Home page
   home_container: {
     flex: 1,
-    backgroundColor: '#141414',
   },
   home_developmentModeText: {
     marginBottom: 20,
