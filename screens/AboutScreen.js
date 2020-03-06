@@ -44,6 +44,8 @@ export default function AboutScreen() {
         <Text style={styles.about_mapText}>{formatHours(global.Gwood.about.hours)}</Text>
       </View>
 
+
+      {/* tomdo: make this phone number a button */}
       <View style={styles.about_phoneContainer}>
         <Text style={styles.about_mapText}>Give us a call!</Text>
         <Text style={styles.about_phoneText}>{formatPhone(global.Gwood.about.phone)}</Text>
