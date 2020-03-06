@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
 
 import styles from '../allStyles';
 
@@ -13,7 +13,8 @@ export default class FormButton extends React.Component {
           onPress={this.props.onPress}
           >
             <Text style={styles.home_formButtonText}>
-                {this.props.name} {this.props.suffix == null ? null : this.props.suffix}
+                {this.props.name} 
+                {/* {this.props.suffix == null ? null : this.props.suffix} */}
             </Text>
           </TouchableOpacity>
 

@@ -8,6 +8,8 @@ import { RectButton, ScrollView, TouchableOpacity, TouchableHighlight } from 're
 import BackgroundWrapper from '../components/BackgroundWrapper';
 import FormHeader from '../components/FormHeader';
 
+import styles from '../allStyles';
+
 var yeet = "asdflkenfaoinasdfawefavawefcaeif";
 
 var iosURL = "https://maps.apple.com/?address=2074%20Smith%20Mountain%20Lake%20Pkwy,%20Unit%205,%20Huddleston,%20VA%20%2024104,%20United%20States&auid=2266961395205873666&ll=37.178076,-79.433392&lsp=9902&q=Glenwood%20Oil%20%26%20Gas,%20Propane&_ext=ChoKBQgEEOIBCgQIBRADCgUIBhDfAQoECAoQABImKcHuhQQ4lkJAMe4sew0Z3FPAOT/Eq2Bel0JAQXSAcFRg21PAUAM%3D";
@@ -77,7 +79,7 @@ var glenwoodRed = '#e21f26';
 var glenwoodFont = 'Montserrat';
 var glenwoodFontBold = 'Montserrat-Bold';
 
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
   about_container: {
     flex: 1,
     backgroundColor: '#fafafa',
