@@ -52,8 +52,9 @@ export default function HomeScreen({navigation}) {
           
           
             <FormButton name="About Us" onPress={()=>{navigation.navigate('About')}} />
-            <FormButton name="Photos" onPress={()=>{Linking.openURL(`tel:${phoneNumber}`)}} />
-            <FormButton name="Give us a call!" onPress={()=>{Linking.openURL(`tel:${phoneNumber}`)}} />
+            
+            <FormButton name="Photos" onPress={()=>{Linking.openURL(`tel:${global.Gwood.about.phone}`)}} />
+            <FormButton name="Give us a call!" onPress={()=>{Linking.openURL(`tel:${global.Gwood.about.phone}`)}} />
 
 
           </View>

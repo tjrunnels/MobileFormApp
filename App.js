@@ -117,7 +117,14 @@ function parseResponseText(responseText){
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
   
-  global.Gwood.AboutPicture = require("./assets/images/contactUs.jpg");
+
+  global.Gwood.about = new Object();
+  global.Gwood.about.address = takeOutMLtags(xhtmlDom.querySelect('#about #address'));
+  global.Gwood.about.phone = takeOutMLtags(xhtmlDom.querySelect('#about #phone'));
+  global.Gwood.about.paragraph = takeOutMLtags(xhtmlDom.querySelect('#about #paragraph'));
+  global.Gwood.about.hours = takeOutMLtags(xhtmlDom.querySelect('#about #hours'));
+  global.Gwood.about.address = takeOutMLtags(xhtmlDom.querySelect('#about #address'));
+  global.Gwood.about.picture = require("./assets/images/contactUs.jpg");
   
   //#region form stuff (hardcoding...sadly)  variables:  headerText, paragraph, formsNeeded
   global.Gwood.form0 = new Object();
