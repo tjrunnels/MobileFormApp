@@ -9,7 +9,7 @@ import t from 'tcomb-form-native' //0.6.9
 import FormClass from '../components/FormClass'
 import FormHeader from '../components/FormHeader'
 
-import styles from '../allStyles';
+import style2s from '../allStyles';
 import BackgroundWrapper from '../components/BackgroundWrapper';
 
 
@@ -47,24 +47,41 @@ export default function FormScreen({route,navigation}) {
 
     
   return (
-    <BackgroundWrapper>
-      <FormHeader title={formInfo.titles} picture={formInfo.picture}/>
-      
-      <ScrollView>
-        <Text style={{color:"white"}}>{formInfo.paragraph}</Text>
-        <KeyboardAwareScrollView>
-          <View>
-            <FormClass 
-              formsNeeded={_formsNeeded}
-            />
+    <BackgroundWrapper>      
+        <KeyboardAwareScrollView
+          extraHeight={10}
+          extraScrollHeight={100}
+        >
+
+          <FormHeader title={formInfo.titles} picture={formInfo.picture}/>
+
+          <View style={styles.formScreen_contentContainer}>
+            <Text style={styles.formScreen_paragraphText}>{formInfo.paragraph}</Text>
           </View>
-        </KeyboardAwareScrollView>
 
-      </ScrollView>
+          <FormClass formsNeeded={_formsNeeded} />
 
+      </KeyboardAwareScrollView>
     </BackgroundWrapper>
   );
 }
 
 
+var glenwoodRed = '#e21f26';
+var glenwoodFont = 'Montserrat';
+var glenwoodFontBold = 'Montserrat-Bold';
+var styles = StyleSheet.create({
+  
+  formScreen_paragraphText: {
+    color: "white",
+    fontFamily: glenwoodFont,
+    fontSize: 17,
+    alignSelf: 'flex-start',
+    marginTop: 1,
+  },
 
+  formScreen_contentContainer: {
+    padding: 15,
+    backgroundColor: glenwoodRed,
+  },
+});

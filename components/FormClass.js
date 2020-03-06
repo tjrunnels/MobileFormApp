@@ -9,6 +9,8 @@ import { sendEmail } from './emailSender';
 
 import { sendGridEmail } from 'react-native-sendgrid';
 
+import FormButton from './FormButton';
+
 //tomdo figure this out
 var APIKey = process.env.SENDGRID_API_KEY;
 
@@ -36,11 +38,11 @@ const installations_radio = t.enums({
 });
 
 const User = t.struct({
+  installationYouAreInterstedIn: installations_radio,
   name: t.String,
   email: t.String,
   phone: t.String,
   address: t.maybe(t.String),
-  radio: t.maybe(installations_radio),
   company: t.maybe(t.String),
 });
 
@@ -168,9 +170,7 @@ handleSubmit = () => {
                 onFocus={this._scrollToInput.bind(this)}
             />
 
-          <TouchableOpacity onPress={this.handleSubmit} style={styles.formClass_submitButton}>
-            <Text style={styles.formClass_submitButtonText}>Submit</Text>
-          </TouchableOpacity>
+          <FormButton onPress={this.handleSubmit} name="Submit" />
         </View>
       );
   }

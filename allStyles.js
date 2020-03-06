@@ -52,7 +52,6 @@ styles = StyleSheet.create({
   },
   formClass_container: {
     justifyContent: 'center',
-    marginTop: 50,
     padding: 30,
     backgroundColor: 'transparent',
     color: "white",
@@ -125,8 +124,9 @@ home_helpLinkText: {
   //////////////// form button
  
 home_formButton:{
-  marginRight:40,
-  marginLeft:40,
+  alignSelf: "center",
+  // marginRight:40,
+  // marginLeft:40,
   marginTop:10,
   paddingTop:20,
   paddingBottom:20,
@@ -134,7 +134,7 @@ home_formButton:{
   borderWidth: 1,
   backgroundColor: glenwoodRed,
   borderColor: 'rgba(0, 0, 0, 0)',
-  width: Dimensions.get('window').width * .8, 
+  width: Dimensions.get('window').width * .85, 
 },
 
 home_formButtonText: {
