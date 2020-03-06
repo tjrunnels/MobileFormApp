@@ -166,6 +166,10 @@ function parseResponseText(responseText){
   //#endregion
 
 
+  //tomdo: add code to populate global.Gwood.photosArray
+
+
+
   // var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
   // var takeOut = takeOutMLtags(before);
   // var after = "AFTER: " + takeOut;

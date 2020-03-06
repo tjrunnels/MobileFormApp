@@ -31,6 +31,19 @@ styles = StyleSheet.create({
     fontFamily: glenwoodFontBold,
   },
 
+////////////////////////////////////////////////// PhotosScreen
+  photo_headerText: {
+    color: "white",
+    fontFamily: glenwoodFontBold,
+    fontSize: 28,
+    alignSelf: 'flex-start',
+    marginTop: 1,
+    alignSelf: "center",
+    padding:10,
+    paddingTop:15,
+    textAlign: "center"
+  },
+
 
 ////////////////////////////////////////////////// FormHeader
   formHeader_rectangle: {
