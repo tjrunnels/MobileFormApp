@@ -1,21 +1,16 @@
 import * as React from 'react';
-import { StyleSheet, ImageBackground,Text, View, Button, Image, Platform, TouchableHighlight,Dimensions, KeyboardAvoidingView  } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import t from 'tcomb-form-native' //0.6.9
+import styles from '../allStyles';
+
 import FormClass from '../components/FormClass'
 import FormHeader from '../components/FormHeader'
-
-import style2s from '../allStyles';
 import BackgroundWrapper from '../components/BackgroundWrapper';
 
 
 export default function FormScreen({route,navigation}) {
-
-
+  
   //error page if the form page was reached out of use case
   if(global.Gwood.formChosen == null) {
     return(
@@ -65,23 +60,3 @@ export default function FormScreen({route,navigation}) {
     </BackgroundWrapper>
   );
 }
-
-
-var glenwoodRed = '#e21f26';
-var glenwoodFont = 'Montserrat';
-var glenwoodFontBold = 'Montserrat-Bold';
-var styles = StyleSheet.create({
-  
-  formScreen_paragraphText: {
-    color: "white",
-    fontFamily: glenwoodFont,
-    fontSize: 17,
-    alignSelf: 'flex-start',
-    marginTop: 1,
-  },
-
-  formScreen_contentContainer: {
-    padding: 15,
-    backgroundColor: glenwoodRed,
-  },
-});

@@ -1,7 +1,6 @@
 import qs from 'qs';
 import { Linking, Alert } from 'react-native';
 
-
 export async function sendEmail(to, subject, body, options = {}) {
 
     await Alert.alert(
@@ -20,8 +19,7 @@ export async function sendEmail(to, subject, body, options = {}) {
         ],
         {cancelable: true},
     );
-    
-    }
+}
 
 async function openEmailApp(to, subject, body, options = {}) {
     const { cc, bcc } = options;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
+import {ImageBackground} from 'react-native';
 
 import styles from '../allStyles';
 
@@ -11,7 +11,6 @@ export default class BackgroundWrapper extends React.Component {
            backImage: require('../assets/images/mobileappbackground.jpeg'),
         }
      }
-
 
     render() {
       return (

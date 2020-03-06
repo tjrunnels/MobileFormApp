@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import BackgroundWrapper from '../components/BackgroundWrapper';
-
-import PhotoItem from '../components/PhotoItem';
 
 import styles from '../allStyles';
 
+import PhotoItem from '../components/PhotoItem';
 
 export default function PhotoScreen() {
 
@@ -18,22 +17,20 @@ export default function PhotoScreen() {
 
   return (
     <BackgroundWrapper>
-    <ScrollView>  
+      <ScrollView>  
 
-      <View style={styles.about_hoursContainer}>
-        <Text style={styles.photo_headerText}>Some of our favorite pictures: </Text>
-      </View>
+        <View style={styles.about_hoursContainer}>
+          <Text style={styles.photo_headerText}>Some of our favorite pictures: </Text>
+        </View>
 
-      {printPhotos}
+        {printPhotos}
 
-      {/* a closing paragraph if i want it later */}
-      {/* <View style={styles.about_contentContainer}>
-        <Text style={styles.about_paragraphText}>{global.Gwood.about.paragraph}</Text>
-      </View> */}
+        {/* a closing paragraph if i want it later */}
+        {/* <View style={styles.about_contentContainer}>
+          <Text style={styles.about_paragraphText}>{global.Gwood.about.paragraph}</Text>
+        </View> */}
 
-
-    </ScrollView>
-
-  </BackgroundWrapper>
+      </ScrollView>
+    </BackgroundWrapper>
   );
 }

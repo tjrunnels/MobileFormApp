@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Text, Dimensions, View, ImageBackground} from 'react-native';
+import { Text, Dimensions, View, ImageBackground} from 'react-native';
 
 const home_front_logo = require("../assets/images/contactUs.jpg");
 
@@ -17,13 +17,9 @@ export default class PhotoItem extends React.Component {
               justifyContent: 'center',
               alignItems:'center',
               marginBottom: topBotMargin,
-             // marginBottom: topBotMargin,
             }}
         >
-            <Text style={{color:"white"}}>{this.props.source}</Text>
-            {/* <View style={styles.formHeader_rectangle}>
-                <Text style={styles.formHeader_text}>{this.props.title}</Text>
-            </View> */}
+          <Text style={{color:"white"}}>{this.props.source}</Text>
         </ImageBackground>
         </View>
       );

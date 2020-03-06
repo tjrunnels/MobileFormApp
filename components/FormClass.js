@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button,TouchableOpacity, Text, KeyboardAvoidingView, TextInput } from 'react-native';
+import { View } from 'react-native';
 
+import { sendEmail } from './emailSender';  //tomdo:  delete this?
+import { sendGridEmail } from 'react-native-sendgrid';
 import t from 'tcomb-form-native'; // 0.6.9
 
 import styles from '../allStyles';
-
-import { sendEmail } from './emailSender';
-
-import { sendGridEmail } from 'react-native-sendgrid';
 
 import FormButton from './FormButton';
 
 //tomdo figure this out
 var APIKey = process.env.SENDGRID_API_KEY;
-
 
 var t2 = require('tcomb-form-native');
 var _ = require('lodash');
@@ -24,8 +21,6 @@ const mystylesheet = _.cloneDeep(t2.form.Form.stylesheet);
 // overriding the text color
 mystylesheet.textbox.normal.color = 'white';
 mystylesheet.controlLabel.normal.color = 'white';
-
-
 
 const Form = t.form.Form;
 
@@ -48,11 +43,7 @@ const User = t.struct({
 
   
 export default class FormClass extends Component {
-
-
-
-
-handleSubmit = () => {
+  handleSubmit = () => {
     var field_values = this._form.getValue(); // use that ref to get the form value
     
     if(field_values == null)
@@ -101,15 +92,6 @@ handleSubmit = () => {
 
     var email_formName = global.Gwood.forms[global.Gwood.formChosen];
 
-    // //sendEmail(to, subject, body, options = {}) {
-    // sendEmail(
-    //   'supertom500@gmail.com',
-    //   "APP: " + email_formName + " - " + savedValues.name,
-    //   email_body
-    // ).then(() => {
-    //   console.log('Our email successful provided to device mail ');
-    // });
-
     const msg = {
         to: 'supertom500@gmail.com',
         from: 'test@example.com',
@@ -131,7 +113,7 @@ handleSubmit = () => {
             console.log(error)
                 });
 
-    }
+  }
       
   render() {
     var _fieldsNeeded = this.props.formsNeeded;

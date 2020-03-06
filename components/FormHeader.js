@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, Dimensions, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback, ImageBackground} from 'react-native';
+import { Text, Dimensions, View, ImageBackground} from 'react-native';
 
 import styles from '../allStyles';
-
-const home_front_logo = require("../assets/images/gwood.png");
-
 
 export default class FormHeader extends React.Component {
     render() {

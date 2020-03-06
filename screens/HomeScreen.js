@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Image, Platform, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Button, TouchableHighlight, TouchableNativeFeedback, Linking} from 'react-native';
+import { Image, Text, View, Linking} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
 
 import FormButton from '../components/FormButton';
-import { MonoText } from '../components/StyledText';
 
 import BackroundWrapper from '../components/BackgroundWrapper';
 
@@ -12,14 +10,12 @@ import styles from '../allStyles';
 
 export default function HomeScreen({navigation}) {
 
-
   //variables
   const home_front_logo = <Image source={require("../assets/images/gwood.png")} style={{width:350}}/>;
   _forms = global.Gwood.forms;
 
   return (
     <BackroundWrapper>
-    {/* <DevelopmentModeNotice /> */}
       <ScrollView style={styles.home_container} contentContainerStyle={styles.home_contentContainer}>
 
         {/* Top, main logo on home page */}
@@ -28,13 +24,11 @@ export default function HomeScreen({navigation}) {
             <Text style = {styles.home_welcomeText}>{global.Gwood.homeheader}</Text>
         </View>
 
-
-
+        {/* Body, paragraph and all the buttons */}
         <View style={styles.home_getStartedContainer}>   
 
          <Text style={styles.home_paragraph}>{global.Gwood.homeParagraph}</Text>
 
-         
          {/*   -Okay this is a lot.  first off, I know this is bad form.  i couldn't quite think of a way to do this with forEach
               -What it does:   
                 if there is a form, display a FormButton which has name of form[index] and other parameters (suffix is just proof of concept
@@ -53,12 +47,7 @@ export default function HomeScreen({navigation}) {
 
             <FormButton name="Give us a call!" onPress={()=>{Linking.openURL(`tel:${global.Gwood.about.phone}`)}} />
 
-
           </View>
-
-            
-
-          {/* old home screen stuff can be found at the bottom region "old home" */}
         </View>
 
         {/* bottom spacing */}
@@ -66,15 +55,5 @@ export default function HomeScreen({navigation}) {
 
       </ScrollView>
     </BackroundWrapper> 
-  );
-}
-
-HomeScreen.navigationOptions = {
-  header: null,
-};
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
   );
 }

@@ -194,6 +194,19 @@ home_formButtonText: {
     marginHorizontal: 50,
   },
 
+  formScreen_paragraphText: {
+    color: "white",
+    fontFamily: glenwoodFont,
+    fontSize: 17,
+    alignSelf: 'flex-start',
+    marginTop: 1,
+  },
+
+  formScreen_contentContainer: {
+    padding: 15,
+    backgroundColor: glenwoodRed,
+  },
+
 
 
   //////////////////////////////////////////////// About Page
