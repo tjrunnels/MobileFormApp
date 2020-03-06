@@ -63,7 +63,7 @@ handleSubmit = () => {
       email: "null",
       phone: "null",
       address: "null",
-      radio: "null",
+      installationYouAreInterstedIn: "null",
       company: "null",
     };
 
@@ -87,10 +87,10 @@ handleSubmit = () => {
       email_body += "Address: " + savedValues.address + "\n"; 
     }
 
-    if(field_values.radio) {console.log('radio: ', field_values.radio) }
-    if(field_values.radio) {
-      savedValues.radio = field_values.radio;
-      email_body += "Propane Installation I'm intersted in: " + savedValues.radio + "\n"; 
+    if(field_values.installationYouAreInterstedIn) {console.log('radio: ', field_values.installationYouAreInterstedIn) }
+    if(field_values.installationYouAreInterstedIn) {
+      savedValues.installationYouAreInterstedIn = field_values.installationYouAreInterstedIn;
+      email_body += "Propane Installation I'm intersted in: " + savedValues.installationYouAreInterstedIn + "\n"; 
     }
 
     if(field_values.company) {console.log('company: ', field_values.company) }
@@ -150,7 +150,7 @@ handleSubmit = () => {
             address: {
                 hidden: _fieldsNeeded[3] == "N" ? true : false // <= label for the name field
             },
-            radio: {
+            installationYouAreInterstedIn: {
                 hidden: _fieldsNeeded[4] == "N" ? true : false
             },
             company: {

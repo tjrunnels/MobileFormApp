@@ -17,11 +17,11 @@ const Stack = createStackNavigator();
 export default function NewNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{headerStyle: styles.navigatorStyle}}/>
-      <Stack.Screen name="Links" component={LinksScreen} options={{headerStyle: styles.navigatorStyle}}/>
-      <Stack.Screen name="Form" component={FormScreen} options={{headerStyle: styles.navigatorStyle}}/>
-      <Stack.Screen name="Loading" component={LoadingScreen} options={{headerStyle: styles.navigatorStyle}}/>
-      <Stack.Screen name="About" component={AboutScreen} options={{headerStyle: styles.navigatorStyle}}/>
+      <Stack.Screen name="Home" component={HomeScreen} options={{headerStyle: styles.navigatorStyle, headerTintColor: "#FFFFFF", headerTitleStyle: styles.navigator_headerTitleStyle}}/>
+      <Stack.Screen name="Links" component={LinksScreen} options={{headerStyle: styles.navigatorStyle, headerTintColor: "#FFFFFF", headerTitleStyle: styles.navigator_headerTitleStyle}}/>
+      <Stack.Screen name="Form" component={FormScreen} options={{headerStyle: styles.navigatorStyle, headerTintColor: "#FFFFFF", headerTitleStyle: styles.navigator_headerTitleStyle}}/>
+      <Stack.Screen name="Loading" component={LoadingScreen} options={{headerStyle: styles.navigatorStyle, headerTintColor: "#FFFFFF", headerTitleStyle: styles.navigator_headerTitleStyle }}/>
+      <Stack.Screen name="About" component={AboutScreen} options={{headerStyle: styles.navigatorStyle, headerTintColor: "#FFFFFF", headerTitleStyle: styles.navigator_headerTitleStyle}}/>
     </Stack.Navigator>
   );
 }

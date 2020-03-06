@@ -24,8 +24,12 @@ styles = StyleSheet.create({
 
   navigatorStyle: {
     backgroundColor: glenwoodRed,
+    shadowColor: 'rgba(0,0,0,0)',
   },
 
+  navigator_headerTitleStyle: {
+    fontFamily: glenwoodFontBold,
+  },
 
 
 ////////////////////////////////////////////////// FormHeader
