@@ -1,17 +1,20 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, Image, Platform, TouchableHighlight } from 'react-native';
+import { StyleSheet, ImageBackground,Text, View, Button, Image, Platform, TouchableHighlight,Dimensions, KeyboardAvoidingView  } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import t from 'tcomb-form-native' //0.6.9
 import FormClass from '../components/FormClass'
+import FormHeader from '../components/FormHeader'
 
-import styles from '../allStyles';
+import style2s from '../allStyles';
+import BackgroundWrapper from '../components/BackgroundWrapper';
 
-let xhtmlTestOutput = "-xhtml-"; //tomdo: delete
 
 export default function FormScreen({route,navigation}) {
+
 
   //error page if the form page was reached out of use case
   if(global.Gwood.formChosen == null) {
@@ -23,7 +26,6 @@ export default function FormScreen({route,navigation}) {
   }
 
   //varaibles
-    const form_header_image = <Image source={require("../assets/images/300x200.png")} style={{width:300}}/>;
     var formInfo;
     //#region assigning formInfo the correct info based on formChosen
     switch(global.Gwood.formChosen) {
@@ -43,50 +45,43 @@ export default function FormScreen({route,navigation}) {
     //#endregion
     var _formsNeeded = ("" + formInfo.formsNeeded).split(',');
 
+    
   return (
-    <View>
-    {form_header_image}
-    <ScrollView>
+    <BackgroundWrapper>      
+        <KeyboardAwareScrollView
+          extraHeight={10}
+          extraScrollHeight={100}
+        >
 
-{/*       
-    <View>
-    <Text style = {styles.home_getStartedText}>{formInfo.headerText}</Text>
-    <Text style = {styles.home_getStartedText}>{formInfo.paragraph}</Text>
+          <FormHeader title={formInfo.titles} picture={formInfo.picture}/>
 
-    {_formsNeeded[0] == "N" ? null : <Text style = {styles.home_getStartedText}>Name</Text>}
-    {_formsNeeded[1] == "N" ? null : <Text style = {styles.home_getStartedText}>email</Text>}
-    {_formsNeeded[2] == "N" ? null : <Text style = {styles.home_getStartedText}>phone</Text>}
-    {_formsNeeded[3] == "N" ? null : <Text style = {styles.home_getStartedText}>address</Text>}
-    {_formsNeeded[4] == "N" ? null : <Text style = {styles.home_getStartedText}>radio</Text>}
-    {_formsNeeded[5] == "N" ? null : <Text style = {styles.home_getStartedText}>company</Text>}
+          <View style={styles.formScreen_contentContainer}>
+            <Text style={styles.formScreen_paragraphText}>{formInfo.paragraph}</Text>
+          </View>
 
-    </View> */}
+          <FormClass formsNeeded={_formsNeeded} />
 
-    <FormClass 
-      formsNeeded={_formsNeeded}
-    />
-
-      </ScrollView>
-
-    </View>
+      </KeyboardAwareScrollView>
+    </BackgroundWrapper>
   );
 }
 
 
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.form_option, isLastOption && styles.form_lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.form_optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(100,0,0,0.35)" />
-        </View>
-        <View style={styles.form_optionTextContainer}>
-          <Text style={styles.form_optionText}>{label}</Text>
-        </View>
-      </View>
-    </RectButton>
-  );
-}
+var glenwoodRed = '#e21f26';
+var glenwoodFont = 'Montserrat';
+var glenwoodFontBold = 'Montserrat-Bold';
+var styles = StyleSheet.create({
+  
+  formScreen_paragraphText: {
+    color: "white",
+    fontFamily: glenwoodFont,
+    fontSize: 17,
+    alignSelf: 'flex-start',
+    marginTop: 1,
+  },
 
-
-
+  formScreen_contentContainer: {
+    padding: 15,
+    backgroundColor: glenwoodRed,
+  },
+});

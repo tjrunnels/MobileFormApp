@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button,TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Button,TouchableOpacity, Text, KeyboardAvoidingView, TextInput } from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
 
@@ -7,6 +7,23 @@ import styles from '../allStyles';
 
 import { sendEmail } from './emailSender';
 
+import { sendGridEmail } from 'react-native-sendgrid';
+
+import FormButton from './FormButton';
+
+//tomdo figure this out
+var APIKey = process.env.SENDGRID_API_KEY;
+
+
+var t2 = require('tcomb-form-native');
+var _ = require('lodash');
+
+// clone the default stylesheet
+const mystylesheet = _.cloneDeep(t2.form.Form.stylesheet);
+
+// overriding the text color
+mystylesheet.textbox.normal.color = 'white';
+mystylesheet.controlLabel.normal.color = 'white';
 
 
 
@@ -21,11 +38,11 @@ const installations_radio = t.enums({
 });
 
 const User = t.struct({
+  installationYouAreInterstedIn: installations_radio,
   name: t.String,
   email: t.String,
   phone: t.String,
   address: t.maybe(t.String),
-  radio: t.maybe(installations_radio),
   company: t.maybe(t.String),
 });
 
@@ -46,7 +63,7 @@ handleSubmit = () => {
       email: "null",
       phone: "null",
       address: "null",
-      radio: "null",
+      installationYouAreInterstedIn: "null",
       company: "null",
     };
 
@@ -70,10 +87,10 @@ handleSubmit = () => {
       email_body += "Address: " + savedValues.address + "\n"; 
     }
 
-    if(field_values.radio) {console.log('radio: ', field_values.radio) }
-    if(field_values.radio) {
-      savedValues.radio = field_values.radio;
-      email_body += "Propane Installation I'm intersted in: " + savedValues.radio + "\n"; 
+    if(field_values.installationYouAreInterstedIn) {console.log('radio: ', field_values.installationYouAreInterstedIn) }
+    if(field_values.installationYouAreInterstedIn) {
+      savedValues.installationYouAreInterstedIn = field_values.installationYouAreInterstedIn;
+      email_body += "Propane Installation I'm intersted in: " + savedValues.installationYouAreInterstedIn + "\n"; 
     }
 
     if(field_values.company) {console.log('company: ', field_values.company) }
@@ -84,21 +101,42 @@ handleSubmit = () => {
 
     var email_formName = global.Gwood.forms[global.Gwood.formChosen];
 
-    //sendEmail(to, subject, body, options = {}) {
-    sendEmail(
-      'supertom500@gmail.com',
-      "APP: " + email_formName + " - " + savedValues.name,
-      email_body
-    ).then(() => {
-      console.log('Our email successful provided to device mail ');
-    });
+    // //sendEmail(to, subject, body, options = {}) {
+    // sendEmail(
+    //   'supertom500@gmail.com',
+    //   "APP: " + email_formName + " - " + savedValues.name,
+    //   email_body
+    // ).then(() => {
+    //   console.log('Our email successful provided to device mail ');
+    // });
+
+    const msg = {
+        to: 'supertom500@gmail.com',
+        from: 'test@example.com',
+        subject: "APP_FORM: " + email_formName + " - " + savedValues.name,
+        text: email_body,
+    };
+
+    const sendRequest = sendGridEmail(
+        APIKey,
+        'supertom500@gmail.com',
+        'test@example.com',
+        "APP_FORM: " + email_formName + " - " + savedValues.name,
+        email_body
+        );
+
+    sendRequest.then((response) => {
+            console.log("success")
+        }).catch((error) => {
+            console.log(error)
+                });
 
     }
-
       
   render() {
     var _fieldsNeeded = this.props.formsNeeded;
     var _options = {
+      stylesheet: mystylesheet,
         fields: {
             name: {
                 hidden: _fieldsNeeded[0] == "N" ? true : false // <= label for the name field
@@ -112,7 +150,7 @@ handleSubmit = () => {
             address: {
                 hidden: _fieldsNeeded[3] == "N" ? true : false // <= label for the name field
             },
-            radio: {
+            installationYouAreInterstedIn: {
                 hidden: _fieldsNeeded[4] == "N" ? true : false
             },
             company: {
@@ -122,15 +160,30 @@ handleSubmit = () => {
       };
     return (
         <View style={styles.formClass_container}>
-          <Form 
-            ref={c => this._form = c} // assign a ref
-            type={User} 
-            options={_options}
-          />
-          <TouchableOpacity onPress={this.handleSubmit} style={styles.formClass_submitButton}>
-            <Text style={styles.formClass_submitButtonText}>Submit</Text>
-          </TouchableOpacity>
+
+            <Form 
+                ref={c => this._form = c} // assign a ref
+                type={User} 
+                options={_options}
+                onPress={() => {console.log("hello");}}
+                style={styles.formStyle}
+                onFocus={this._scrollToInput.bind(this)}
+            />
+
+          <FormButton onPress={this.handleSubmit} name="Submit" />
         </View>
       );
   }
+
+_scrollToInput() {
+    const scrollResponder = this._form.myScrollView.getScrollResponder();
+    const inputHandle = React.findNodeHandle(this._form);
+  
+    scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+      inputHandle, // The TextInput node handle
+      0, // The scroll view's bottom "contentInset" (default 0)
+      true // Prevent negative scrolling
+    );
+  }
+  
 }
