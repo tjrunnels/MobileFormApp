@@ -25,7 +25,7 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.stimulus.Glenwood",
+      "bundleIdentifier": "com.stimulus.Glenwoodoilgas",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },

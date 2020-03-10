@@ -102,8 +102,8 @@ export default class FormClass extends Component {
     var tmp = sndgrid();
     const sendRequest = sendGridEmail(
         sndgrid(),
-        'supertom500@gmail.com',
-        'test@example.com',
+        global.Gwood.emailto,
+        global.Gwood.emailfrom,
         "APP_FORM: " + email_formName + " - " + savedValues.name,
         email_body
         );

@@ -113,9 +113,11 @@ function parseResponseText(responseText){
   
   global.Gwood.forms = takeOutMLtags(xhtmlDom.querySelect('#forms')).split(',');
 
+  global.Gwood.emailto = takeOutMLtags(xhtmlDom.querySelect('#emailto'));
+  global.Gwood.emailfrom = takeOutMLtags(xhtmlDom.querySelect('#emailfrom'));
+
   global.Gwood.homeheader = takeOutMLtags(xhtmlDom.querySelect('#home #headerText'));
   global.Gwood.homeParagraph = takeOutMLtags(xhtmlDom.querySelect('#home #paragraph'));
-  
 
   global.Gwood.about = new Object();
   global.Gwood.about.address = takeOutMLtags(xhtmlDom.querySelect('#about #address'));
@@ -163,8 +165,6 @@ function parseResponseText(responseText){
 
 
   //#endregion
-
-  console.log(sndgrid());
 
   //tomdo: add code to populate global.Gwood.photosArray
   global.Gwood.photosArray = takeOutMLtags(xhtmlDom.querySelect('#photos')).split(',');
