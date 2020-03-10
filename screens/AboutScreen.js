@@ -44,7 +44,7 @@ export default function AboutScreen() {
         {/* tomdo: make this phone number a button */}
         <View style={styles.about_phoneContainer}>
           <Text style={styles.about_mapText}>Give us a call!</Text>
-          <Text style={styles.about_phoneText}>{formatPhone(global.Gwood.about.phone)}</Text>
+          <Text style={styles.about_phoneText} onPress={()=>{Linking.openURL(`tel:${global.Gwood.about.phone}`)}}>{formatPhone(global.Gwood.about.phone)}</Text>
         </View>
 
       </ScrollView>

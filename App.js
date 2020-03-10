@@ -11,6 +11,7 @@ import useLinking from './navigation/useLinking';
 const Stack = createStackNavigator();
 
 import styles from './allStyles';
+import sndgrid from './components/nothingToSeeHere';
 
 
 global.itbe = "like that";
@@ -163,10 +164,10 @@ function parseResponseText(responseText){
 
   //#endregion
 
+  console.log(sndgrid());
 
   //tomdo: add code to populate global.Gwood.photosArray
-
-
+  global.Gwood.photosArray = takeOutMLtags(xhtmlDom.querySelect('#photos')).split(',');
 
   // var before = "BEFORE:" + xhtmlDom.querySelect('#home #headerText');  
   // var takeOut = takeOutMLtags(before);

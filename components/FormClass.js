@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert} from 'react-native';
 
 import { sendEmail } from './emailSender';  //tomdo:  delete this?
 import { sendGridEmail } from 'react-native-sendgrid';
@@ -9,8 +9,8 @@ import styles from '../allStyles';
 
 import FormButton from './FormButton';
 
-//tomdo figure this out
-var APIKey = process.env.SENDGRID_API_KEY;
+import sndgrid from '../components/nothingToSeeHere';
+
 
 var t2 = require('tcomb-form-native');
 var _ = require('lodash');
@@ -33,7 +33,7 @@ const installations_radio = t.enums({
 });
 
 const User = t.struct({
-  installationYouAreInterstedIn: installations_radio,
+  installationYouAreInterstedIn: t.maybe(installations_radio),
   name: t.String,
   email: t.String,
   phone: t.String,
@@ -44,10 +44,13 @@ const User = t.struct({
   
 export default class FormClass extends Component {
   handleSubmit = () => {
+
     var field_values = this._form.getValue(); // use that ref to get the form value
-    
+
     if(field_values == null)
       return 0;
+
+
 
     var savedValues = {
       name: "null",
@@ -71,20 +74,22 @@ export default class FormClass extends Component {
       "Email: " + savedValues.email + "\n" + 
       "Phone Number: " + savedValues.phone + "\n";
 
+    console.log("here1");
+
     //tomdo: comment out these logs
-    if(field_values.address != "") {console.log('address: ', field_values.address) }
+    if(field_values.address != "") {console.log('address: '+ field_values.address) }
     if(field_values.address) {
       savedValues.address = field_values.address;
       email_body += "Address: " + savedValues.address + "\n"; 
     }
 
-    if(field_values.installationYouAreInterstedIn) {console.log('radio: ', field_values.installationYouAreInterstedIn) }
+    if(field_values.installationYouAreInterstedIn) {console.log('radio: '+ field_values.installationYouAreInterstedIn) }
     if(field_values.installationYouAreInterstedIn) {
       savedValues.installationYouAreInterstedIn = field_values.installationYouAreInterstedIn;
       email_body += "Propane Installation I'm intersted in: " + savedValues.installationYouAreInterstedIn + "\n"; 
     }
 
-    if(field_values.company) {console.log('company: ', field_values.company) }
+    if(field_values.company) {console.log('company: '+ field_values.company) }
     if(field_values.company){
       savedValues.company = field_values.company;
       email_body += "Company: " + savedValues.company + "\n"; 
@@ -92,26 +97,38 @@ export default class FormClass extends Component {
 
     var email_formName = global.Gwood.forms[global.Gwood.formChosen];
 
-    const msg = {
-        to: 'supertom500@gmail.com',
-        from: 'test@example.com',
-        subject: "APP_FORM: " + email_formName + " - " + savedValues.name,
-        text: email_body,
-    };
-
+  
+  
+    var tmp = sndgrid();
     const sendRequest = sendGridEmail(
-        APIKey,
+        sndgrid(),
         'supertom500@gmail.com',
         'test@example.com',
         "APP_FORM: " + email_formName + " - " + savedValues.name,
         email_body
         );
-
     sendRequest.then((response) => {
-            console.log("success")
+            console.log("sndgrid email success");
+            Alert.alert(
+              'Success',
+              'Your information has been sent',
+              [
+                {text: 'OK'},
+              ],
+              {cancelable: false},
+            );
+
         }).catch((error) => {
-            console.log(error)
-                });
+            console.log(error);
+            Alert.alert(
+              'Uh oh',
+              'Something went wrong, try again later',
+              [
+                {text: 'OK'},
+              ],
+              {cancelable: false},
+            );
+            });
 
   }
       

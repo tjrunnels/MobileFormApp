@@ -10,9 +10,9 @@ import PhotoItem from '../components/PhotoItem';
 export default function PhotoScreen() {
 
   //tomdo: change this to global.Gwood.photosArray
-  _forms = global.Gwood.forms;
-  let printPhotos = _forms.map((a, i) => {
-    return <PhotoItem source={a}/>                       
+  _photos = global.Gwood.photosArray;
+  let printPhotos = _photos.map((a, i) => {
+    return <PhotoItem key={i} photo={{uri: a}} num={a}/>                       
   });
 
   return (

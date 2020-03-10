@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Text, Dimensions, View, ImageBackground} from 'react-native';
-
-const home_front_logo = require("../assets/images/contactUs.jpg");
+import { Text, Dimensions, View, ImageBackground, Image} from 'react-native';
 
 var topBotMargin = 50;
 
@@ -10,7 +8,7 @@ export default class PhotoItem extends React.Component {
       return (
      <View style={{backgroundColor: "black"}}>
         <ImageBackground
-            source={home_front_logo}
+            source={this.props.photo}
             style={{
               width: Dimensions.get('window').width, 
               height:200,
@@ -19,7 +17,7 @@ export default class PhotoItem extends React.Component {
               marginBottom: topBotMargin,
             }}
         >
-          <Text style={{color:"white"}}>{this.props.source}</Text>
+          {/* <Text style={{color:"white"}}>{this.props.num}</Text> */}
         </ImageBackground>
         </View>
       );
